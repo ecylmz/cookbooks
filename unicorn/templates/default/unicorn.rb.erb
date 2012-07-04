@@ -1,0 +1,31 @@
+##
+# Unicorn config at <%= @name %>
+# Managed by Chef - Local Changes will be Nuked from Orbit (just to be sure)
+##
+
+# What ports/sockets to listen on, and what options for them.
+<%- @listen.each do |port, options| %>
+listen "<%= port %>", <%= options %>
+<%- end %>
+
+<%- if @working_directory %>
+working_directory '<%= @working_directory %>'
+<%- end %>
+
+# How many worker processes
+worker_processes <%= @worker_processes %>
+
+<%- if @pid %>
+# Where to drop a pidfile
+pid '<%= @pid %>'
+<%- end %>
+
+<%- if @stderr_path %>
+# Where stderr gets logged
+stderr_path '<%= @stderr_path %>'
+<%- end %>
+
+<%- if @stdout_path %>
+# Where stdout gets logged
+stdout_path '<%= @stdout_path %>'
+<%- end %>
